@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  prompt-pms:
+    build: .
+    container_name: prompt_platform
+    ports:
+      - "8500:8000"
+    volumes:
+      - ./app:/app/app          # 关键：挂载代码目录，实现实时修改代码
+      - ./data:/app/data        # 关键：挂载数据目录，实现 SQLite 落盘
+    environment:
+      - TZ=Asia/Shanghai
+      - DASHSCOPE_API_KEY=sk-ss
+    restart: always
